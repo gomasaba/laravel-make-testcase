@@ -1,0 +1,27 @@
+{
+    "name": "ootatter/laravel-make-testcase",
+    "description": "laravel add make:testcase command",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ootatter",
+            "email": "ohta@milds.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "^5.1",
+        "illuminate/console": "^5.1",
+        "illuminate/filesystem": "^5.1",
+        "illuminate/view": "^5.1"
+    },
+    "require-dev": {
+        "mockery/mockery": "~0.9.1",
+        "phpunit/phpunit": "~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelMakeTestCase\\": "src/"
+        }
+    }
+}
