@@ -7,6 +7,7 @@ use Illuminate\View\Engines\PhpEngine;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use ReflectionClass;
+use ReflectionMethod;
 
 class Generator
 {
@@ -155,10 +156,8 @@ class Generator
         $className = $this->detectClassName($file);
         $return = [];
         $class = new ReflectionClass($className);
-        foreach ($class->getMethods() as $method) {
-            if (!$method->isConstructor() &&
-                !$method->isAbstract() &&
-                $method->isPublic() &&
+        foreach ($class->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
+            if (!$this->isTraitMethod($class, $method->getName()) &&
                 $method->getDeclaringClass()->getName() == $className
             ) {
 
@@ -166,6 +165,29 @@ class Generator
             }
         }
         return $return;
+    }
+
+    /**
+     * isTraitMethod
+     *
+     * @param ReflectionClass $class
+     * @param $methodName
+     * @return bool
+     */
+    public function isTraitMethod(ReflectionClass $class, $methodName)
+    {
+        $traits = $class->getTraits();
+        if (empty($traits)) {
+            return false;
+        }
+        foreach ($traits as $traitClassName => $reflectionClass) {
+            foreach ($reflectionClass->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
+                if ($method->getName() == $methodName) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**

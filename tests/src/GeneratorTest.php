@@ -98,6 +98,16 @@ class GeneratorTest extends PHPUnit_Framework_TestCase
         $this->assertSame($expected, $actual);
     }
 
+    public function testGetMethodsWithTrait()
+    {
+        $this->generator->getFiles();
+        $actual = $this->generator->getMethods('Models/Something.php');
+        $expected = [
+            'another'
+        ];
+        $this->assertSame($expected, $actual);
+    }
+
     public function testRender()
     {
         $this->generator->getFiles();
