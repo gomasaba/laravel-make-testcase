@@ -3,7 +3,10 @@
 add make:testcase command for laravel
 
 [![Build Status](https://travis-ci.org/ootatter/laravel-make-testcase.svg?branch=master)](https://travis-ci.org/ootatter/laravel-make-testcase)
-
+[![Latest Stable Version](https://poser.pugx.org/ootatter/laravel-make-testcase/version)](https://packagist.org/packages/ootatter/laravel-make-testcase)
+[![Total Downloads](https://poser.pugx.org/ootatter/laravel-make-testcase/downloads)](https://packagist.org/packages/ootatter/laravel-make-testcase)
+[![Latest Unstable Version](https://poser.pugx.org/ootatter/laravel-make-testcase/v/unstable)](//packagist.org/packages/ootatter/laravel-make-testcase)
+[![License](https://poser.pugx.org/ootatter/laravel-make-testcase/license)](https://packagist.org/packages/ootatter/laravel-make-testcase)
 
 ### Install
 
