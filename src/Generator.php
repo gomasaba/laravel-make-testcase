@@ -158,13 +158,42 @@ class Generator
         $class = new ReflectionClass($className);
         foreach ($class->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
             if (!$this->isTraitMethod($class, $method->getName()) &&
-                $method->getDeclaringClass()->getName() == $className
+                $method->getDeclaringClass()->getName() == $className &&
+                !$this->isMagicMethod($method->getName())
             ) {
 
                 $return[] = $method->getName();
             }
         }
         return $return;
+    }
+
+    /**
+     * isMagicMethod
+     *
+     * @param $methodName
+     * @return bool
+     */
+    public function isMagicMethod($methodName)
+    {
+        $methods = [
+            '__construct',
+            '__destruct',
+            '__call',
+            '__callStatic',
+            '__get',
+            '__set',
+            '__isset',
+            '__unset',
+            '__sleep',
+            '__wakeup',
+            '__toString',
+            '__invoke',
+            '__set_state',
+            '__clone',
+            '__debugInfo',
+        ];
+        return in_array($methodName, $methods);
     }
 
     /**
